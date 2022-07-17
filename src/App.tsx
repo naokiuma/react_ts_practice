@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+
+
+import {useState} from 'react';
+
 import './App.css';
+import Title from './components/Title';
+import Form from './components/Form';
+import Results from './components/Results';
+
+
+
 
 function App() {
+  const [city,setCity] = useState<String>("");
+  const getWeather = (e:any) => {
+      e.preventDefault();
+      fetch("https://api.weatherapi.com/v1/current.json?key=5c2df4c00423492cb1985434221707&q=tokyo&aqi=no")
+      .then(res => res.json())
+      .then(data => console.log(data));
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Title />
+     <Form setCity={setCity} getWeather={getWeather}/>
+     <Results />
+
     </div>
   );
 }

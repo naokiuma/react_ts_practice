@@ -9,14 +9,13 @@
 type FormPropsType = {
     //これらの方は、定義している箇所でマウスオーバーすることで確認できる。
     setCity:React.Dispatch<React.SetStateAction<String>>
-    getWeather:(e: any) => void
+    getWeather:(e: React.FormEvent<HTMLFormElement>) => void
 }
 
 const Form = (props:FormPropsType) =>{
     return(
-        <form>
+        <form onSubmit={props.getWeather}>
             <input type="text" name="city" placeholder="都市名" onChange={e => props.setCity(e.target.value)}/>
-            <button type="submit" onClick={props.getWeather}>get whether</button>
         </form>
     );
 }

@@ -28,7 +28,8 @@ function App() {
     icon:"",
   });
 
-  const getWeather = (e:any) => {
+
+  const getWeather = (e:React.FormEvent<HTMLFormElement>) => {//reactが定義している型でReact.FormEvent<HTMLFormElement>
       e.preventDefault();
       fetch(`https://api.weatherapi.com/v1/current.json?key=5c2df4c00423492cb1985434221707&q=${city}&aqi=no`)
       .then(res => res.json())

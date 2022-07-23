@@ -19,7 +19,7 @@ type ResultsStateType = {
 
 
 function App() {
-  const [city,setCity] = useState<String>("");
+  const [city,setCity] = useState<string>("");
   const [results,setResults] = useState<ResultsStateType>({
     country:"",
     cityName:"",
@@ -40,14 +40,15 @@ function App() {
           temprature: data.current.temp_c,
           conditionText: data.current.condition.text,
           icon: data.current.condition.icon,
-          
         })
-      });
+        setCity('');
+      })
+      .catch(err => alert('エラーが発生しました。地域名が正しいか、改めてご確認ください。'));
   }
   return (
     <div className="App">
      <Title />
-     <Form setCity={setCity} getWeather={getWeather}/>
+     <Form setCity={setCity} getWeather={getWeather} city={city}/>
      <Results results={results}/>
      {/* 慣例として、propsの名前は値と同じにする。 */}
 
